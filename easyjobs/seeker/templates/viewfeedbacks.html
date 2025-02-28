@@ -1,0 +1,62 @@
+{% extends 'seekerhome.html' %}
+{% block title%}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 50px auto;
+      }
+      
+      th, td {
+        text-align: center;
+        padding: 15px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+      }
+      
+      tr:nth-child(even){background-color: #f2f2f2}
+      
+      th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .btn-primary {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+      .btn-primary:hover {
+        background-color: #3e8e41;
+      }
+      
+</style>
+<title>View Feedback</title>
+{% endblock %}
+{%block content%}<section style="margin-right:500px;">
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+    {% for seeker in obj %}
+    <tr>
+      <td>{{seeker.seeker_id.firstname}} {{seeker.seeker_id.lastname}}</td>
+      <td>{{seeker.title}}</td>
+      <td>{{seeker.description}}</td>
+       
+    </tr>
+    {%endfor%}
+</table>
+<section>
+{%endblock%}

@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%load static%}
+{% load crispy_forms_filters%}
+{%block content%}
+{%block title%}
+<link href="{% static 'css\login.css' %}">
+{%endblock%}
+<section class="vh-100 bg-image"
+  style="background-image: url({% static 'img/po.jpg' %})">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="{% static 'img/sig.jpg' %}"
+                  class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+                  alt="photo" height="280">
+          <div class="card-body p-4 p-md-5">
+           <center> <h2 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">LOGIN</h2></center>
+
+          <form method=POST action="logins">
+              <div class="text-center text-lg-start mt-4 pt-2">
+                {% csrf_token %}  
+                {{form|crispy}}
+                {%include 'message.html'%}
+                <button type="submit" class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{%url 'providerregistration'%}"
+                    class="link-danger">Register</a></p>
+              </div>
+              
+           
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%endblock%}

@@ -1,0 +1,78 @@
+{% extends 'admin.html' %}
+
+{% block title%}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 50px auto;
+      }
+      
+      th, td {
+        text-align: center;
+        padding: 15px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+      }
+      
+      tr:nth-child(even){background-color: #f2f2f2}
+      
+      th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .btn-primary {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+      .btn-primary:hover {
+        background-color: #3e8e41;
+      }
+      
+</style>
+<title>Provider Management</title>
+{% endblock %}
+{%block content%}<section style="margin-right:500px;">
+<table>
+    <tr>
+        <th>Name</th>       
+        <th>email</th>
+        <th>Phonenumber</th>
+        <th>Address</th>
+        <th>description</th>
+        <th>licensenumber</th>
+    </tr>
+    {% for shop in provider %}
+    <tr>
+        <td>{{shop.name}}</td>
+       
+        <td>{{shop.email}}</td>
+        <td>{{shop.contact}}</td>
+        <td>{{shop.address}}</td>
+        <td>{{shop.description}}</td>
+       <td> <a class="btn btn-primary" href="media/{{shop.businesslicense}}">View</a></td>
+       <td> <a class="btn btn-danger" href="{%url 'deletestatuss' shop.id%}">Remove</a></td>
+       
+       {%if  shop.status == 0 %}
+            <td> <a class="btn btn-primary" href="{%url 'approves' shop.id%}">Approve</a></td>
+        {% endif %}
+        </tr>
+
+
+       
+    </tr>
+    {%endfor%}
+</table>
+<section>
+{%endblock%}
